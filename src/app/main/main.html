@@ -42,15 +42,15 @@
           </td>
           <td>
             <md-input-container ng-show="row.edit">
-              <input type="number" min="0" ng-model="row.likes.data.length">
+              <input type="number" min="0" ng-model="row.likes.summary.total_count">
             </md-input-container>
-            {{!row.edit ? row.likes.data.length : ''}}
+            {{!row.edit ? row.likes.summary.total_count : ''}}
           </td>
           <td>
             <md-input-container ng-show="row.edit">
-              <input type="number" min="0" ng-model="row.comments.data.length">
+              <input type="number" min="0" ng-model="row.comments.summary.total_count">
             </md-input-container>
-            {{!row.edit ? row.comments.data.length : ''}}
+            {{!row.edit ? row.comments.summary.total_count : ''}}
           </td>
           <td>
             <md-input-container ng-show="row.edit">

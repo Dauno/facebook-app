@@ -19,11 +19,11 @@
 
         function getPosts(data) {
           var url = data.url || false;
+          var deferred = $q.defer();
           if (!url) {
-            url = api + data.name + '/posts?access_token=' + accessToken + '&fields=picture,message,story,shares,likes,comments';
+            url = api + data.name + '/posts?fields=picture,message,story,shares,likes.limit(1).summary(true),comments.limit(1).summary(true)&access_token=' + accessToken;
           }
 
-          var deferred = $q.defer();
           $http({
             url:url,
             method: 'GET',

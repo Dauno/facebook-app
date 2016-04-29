@@ -27,6 +27,7 @@
       vm.posts = posts.data;
       nexPage = posts.paging.next;
       vm.load.page = true;
+      console.log(vm.posts);
     });
 
     function activate(data, cb) {
