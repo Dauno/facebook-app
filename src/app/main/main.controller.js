@@ -8,7 +8,7 @@
   /** @ngInject */
   function MainController(MainFactory) {
     var vm = this,
-        nexPage = null;
+        nextPage = null;
 
     angular.extend(vm, {
       pageName: 'PlayGroundMag',
@@ -25,7 +25,7 @@
 
     activate({name: vm.pageName}, function (posts) {
       vm.posts = posts.data;
-      nexPage = posts.paging.next;
+      nextPage = posts.paging.next;
       vm.load.page = true;
     });
 
@@ -42,16 +42,16 @@
       vm.load.page = false;
       activate({name: vm.pageName}, function (posts) {
         vm.posts = posts.data;
-        nexPage = posts.paging.next;
+        nextPage = posts.paging.next;
         vm.load.page = true;
       });
     }
 
     function loadMore() {
       vm.load.more = false;
-      activate({url: nexPage}, function (posts) {
+      activate({url: nextPage}, function (posts) {
         vm.posts = vm.posts.concat(posts.data);
-        nexPage = posts.paging.next;
+        nextPage = posts.paging.next;
         vm.load.more = true;
       });
     }
