@@ -1,0 +1,86 @@
+<main class="mdl-color--grey-100">
+  <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding="">
+  <div class="mdl-cell mdl-cell--3-col">
+    <md-input-container>
+      <label>Ingresa el nombre de la pagina</label>
+      <input ng-model="main.pageName">
+    </md-input-container>
+  </div>
+
+  <div class="mdl-cell mdl-cell--2-col">
+    <md-button  class="md-raised md-primary" ng-click="main.search();">Buscar</md-button>
+  </div>
+  <div class="mdl-cell mdl-cell--7-col">
+    <md-progress-circular ng-if="!main.load.page" md-mode="indeterminate" md-diameter="40"></md-progress-circular>
+  </div>
+
+</md-content>
+
+  <div class="mdl-grid" ng-if="main.load.page">
+    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp full-width">
+      <thead>
+        <tr>
+          <th class="mdl-data-table__cell--non-numeric" >Id</th>
+          <th class="mdl-data-table__cell--non-numeric">Texto</th>
+          <th>Total likes</th>
+          <th>Total comentarios</th>
+          <th>Total Compartidos</th>
+          <th class="mdl-data-table__cell--non-numeric" >Imagen</th>
+          <th class="mdl-data-table__cell--non-numeric" >Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="row in main.posts track by row.id" >
+          <td class="mdl-data-table__cell--non-numeric" >
+            <p class="message">{{row.id}}</p>
+          </td>
+          <td class="mdl-data-table__cell--non-numeric">
+            <md-input-container ng-show="row.edit" class="message">
+              <textarea type="text" ng-model="row.message"></textarea>
+            </md-input-container>
+            <p class="message"  ng-show="!row.edit">{{!row.edit ? row.message : ''}}</p>
+          </td>
+          <td>
+            <md-input-container ng-show="row.edit">
+              <input type="number" min="0" ng-model="row.likes.data.length">
+            </md-input-container>
+            {{!row.edit ? row.likes.data.length : ''}}
+          </td>
+          <td>
+            <md-input-container ng-show="row.edit">
+              <input type="number" min="0" ng-model="row.comments.data.length">
+            </md-input-container>
+            {{!row.edit ? row.comments.data.length : ''}}
+          </td>
+          <td>
+            <md-input-container ng-show="row.edit">
+              <input type="number" min="0" ng-model="row.shares.count">
+            </md-input-container>
+            {{!row.edit ? row.shares.count : ''}}
+          </td>
+          <td class="mdl-data-table__cell--non-numeric">
+            <img ng-src="{{row.picture}}" class="md-card-image" alt="image caption">
+          </td>
+          <td class="mdl-data-table__cell--non-numeric">
+            <md-button class="md-fab md-primary" aria-label="editar" ng-click="main.editable(row);">
+              <md-icon aria-label="create" ng-if="!row.edit" class="material-icons">create</md-icon>
+              <md-icon aria-label="done" ng-if="row.edit" class="material-icons">done</md-icon>
+            </md-button>
+            <md-button class="md-fab md-warn" aria-label="eliminar" ng-click="main.remove(row);">
+              <md-icon aria-label="delete" class="material-icons" >delete</md-icon>
+            </md-button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mdl-grid" ng-if="main.load.page">
+    <div class="mdl-cell mdl-cell--5-col"></div>
+      <div class="mdl-cell mdl-cell--2-col">
+          <md-progress-circular  ng-if="!main.load.more"  md-mode="indeterminate" class="md-raised" md-diameter="40"></md-progress-circular>
+          <md-button ng-if="main.load.more" class="md-raised md-primary" ng-click="main.loadMore();">Cargar más</md-button>
+      </div>
+    </div>
+    <div class="mdl-cell mdl-cell--5-col"></div>
+  </div>
+</main>
