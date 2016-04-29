@@ -42,6 +42,7 @@
       vm.load.page = false;
       activate({name: vm.pageName}, function (posts) {
         vm.posts = posts.data;
+        nexPage = posts.paging.next;
         vm.load.page = true;
       });
     }
