@@ -9,7 +9,7 @@
 
     /* @ngInject */
     function MainFactory($q, $http, api) {
-        var accessToken = 'CAAK3olgSZC5YBAIzhRe858koE04NBZCS02pd27gM1BNW2l50vzZAIWxrZAjYNocWAkyFzzPJKdfca0BZATvLjB57zz4TIhSS1p1uAHZCrqzj5dGMIUQZCNRO1ZAPrZA6QvfdbGwRVFvPcwbnzsfTQV8d7VVJqQFj1GxwATK3u4djlPrRDVWc2K4wp';
+        var accessToken = '';
 
         var service = {
             getPosts: getPosts
